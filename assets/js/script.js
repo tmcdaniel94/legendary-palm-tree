@@ -131,7 +131,39 @@ function handleSearchFormSubmit(event) {
   .catch(error => {
     console.error('Error fetching weather data:', error);
   });
+
+  // Save the city to local storage
+  saveCityToLocalStorage(searchInputCity);
 };
 
+const saveCityToLocalStorage = (city) => {
+    let savedCities = JSON.parse(localStorage.getItem('cities')) || [];
+    console.log('Saving city:', city);
+    if (!savedCities.includes(city)) {
+        savedCities.push(city);
+        localStorage.setItem('cities', JSON.stringify(savedCities));
+    }
+    console.log('Saved cities:', savedCities);
+};
+
+const readCityFromStorage = (city) => {
+  let savedCities = JSON.parse(localStorage.getItem('cities')) || [];
+  return savedCities.includes(city);
+};
+
+const displaySavedCities = () => {
+    const savedCities = JSON.parse(localStorage.getItem('cities')) || [];
+    const cityListEl = document.querySelector('#saved-cities'); 
+    cityListEl.innerHTML = '';
+
+    savedCities.forEach(city => {
+        const cityEl = document.createElement('button');
+        cityEl.textContent = city;
+        cityListEl.appendChild(cityEl);
+    });
+};
+
+// Display saved cities on page load
+window.addEventListener('load', displaySavedCities);
 
 searchButtonEl.addEventListener('click', handleSearchFormSubmit);
