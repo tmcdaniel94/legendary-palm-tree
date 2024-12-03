@@ -60,10 +60,10 @@ const handleSearchForCity = (city) => {
      if (currentWeatherData) {
        // Create elements for current weather
        const weatherIconEl = document.createElement('img');  // Create an image element for the icon
-       const currentTempEl = document.createElement('p');
-       const currentDescriptionEl = document.createElement('p');
-       const currentHumidtyEl = document.createElement('p');
-       const currentWindSpeedEl = document.createElement('p');
+       const currentTempEl = document.createElement('h4');
+       const currentDescriptionEl = document.createElement('h4');
+       const currentHumidtyEl = document.createElement('h4');
+       const currentWindSpeedEl = document.createElement('h4');
 
        const currentTemp = currentWeatherData.main.temp;
        const currentDescription = currentWeatherData.weather[0].description;
@@ -75,10 +75,10 @@ const handleSearchForCity = (city) => {
        weatherIconEl.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
        weatherIconEl.alt = currentDescription; // Set alt text as the description
 
-       currentTempEl.textContent = `Current Temperature: ${currentTemp}°F`;
-       currentDescriptionEl.textContent = `Current Condition: ${currentDescription}`;
-       currentHumidtyEl.textContent = `Humidity: ${currentHumidty}`;
-       currentWindSpeedEl.textContent = `Wind Speed: ${currentWindSpeed}`;
+       currentTempEl.textContent = `Current Temperature: ${currentTemp}°F `;
+       currentDescriptionEl.textContent = `Current Condition: ${currentDescription} `;
+       currentHumidtyEl.textContent = `Humidity: ${currentHumidty} `;
+       currentWindSpeedEl.textContent = `Wind Speed: ${currentWindSpeed} `;
 
        // Append current weather data to the current-weather div
        currentWeatherEl.appendChild(weatherIconEl);
@@ -131,11 +131,11 @@ const handleSearchForCity = (city) => {
         const forecastEl = document.createElement('div');
         forecastEl.classList.add('forecast-item');
 
-        const dateEl = document.createElement('h3');
-        const temperatureEl = document.createElement('p');
-        const descriptionEl = document.createElement('p');
-        const humidityEl = document.createElement('p');
-        const windSpeedEl = document.createElement('p');
+        const dateEl = document.createElement('h4');
+        const temperatureEl = document.createElement('h4');
+        const descriptionEl = document.createElement('h4');
+        const humidityEl = document.createElement('h4');
+        const windSpeedEl = document.createElement('h4');
         const weatherIconEl = document.createElement('img'); // Create an image element for the icon
 
         dateEl.textContent = forecast.date;
@@ -185,7 +185,7 @@ const readCityFromStorage = (city) => {
 
 const displaySavedCities = () => {
     const savedCities = JSON.parse(localStorage.getItem('cities')) || [];
-    const cityListEl = document.querySelector('#saved-cities'); 
+    const cityListEl = document.querySelector('#city-buttons'); 
     cityListEl.innerHTML = '';
 
     savedCities.forEach(city => {

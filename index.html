@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5 Day Weather Forecast</title>
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
-    rel="stylesheet" /> -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+    rel="stylesheet" />
   <!-- <link rel="stylesheet" href="./assets/css/jass.css" /> -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
@@ -16,13 +16,16 @@
 </header>
 
 <body>
-    <div id="search-bar">
-        <input type="text" id="search-input" placeholder="Enter City Name" />
-        <button id="search-button">Search</button>
-    </div>
-    <div>
-        <h2>Saved Cities</h2>
-        <ul id="saved-cities"></ul>
+    <div id="side-bar">
+        <h2>Enter a city</h2>
+        <div id="search-bar">
+            <input type="text" id="search-input" placeholder="Enter City Name" />
+            <button id="search-button">Search</button>
+        </div>
+        <div id="saved-cities">
+            <h2>Saved Cities</h2>
+            <ul id="city-buttons"></ul>
+        </div>
     </div>
     <div id="weather-content">
         <div id="current-weather"></div>
