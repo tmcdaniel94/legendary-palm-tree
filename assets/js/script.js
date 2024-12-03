@@ -56,6 +56,7 @@ function handleSearchFormSubmit(event) {
 
      if (currentWeatherData) {
        // Create elements for current weather
+       const weatherIconEl = document.createElement('img');  // Create an image element for the icon
        const currentTempEl = document.createElement('p');
        const currentDescriptionEl = document.createElement('p');
        const currentHumidtyEl = document.createElement('p');
@@ -65,6 +66,11 @@ function handleSearchFormSubmit(event) {
        const currentDescription = currentWeatherData.weather[0].description;
        const currentHumidty = currentWeatherData.main.humidity;
        const currentWindSpeed = currentWeatherData.wind.speed;
+       const iconCode = currentWeatherData.weather[0].icon;  // Get the icon code
+
+       // Set the image source to the OpenWeatherMap icon URL
+       weatherIconEl.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+       weatherIconEl.alt = currentDescription; // Set alt text as the description
 
        currentTempEl.textContent = `Current Temperature: ${currentTemp}°F`;
        currentDescriptionEl.textContent = `Current Condition: ${currentDescription}`;
@@ -72,6 +78,7 @@ function handleSearchFormSubmit(event) {
        currentWindSpeedEl.textContent = `Wind Speed: ${currentWindSpeed}`;
 
        // Append current weather data to the current-weather div
+       currentWeatherEl.appendChild(weatherIconEl);
        currentWeatherEl.appendChild(currentTempEl);
        currentWeatherEl.appendChild(currentDescriptionEl);
        currentWeatherEl.appendChild(currentHumidtyEl);
@@ -106,10 +113,12 @@ function handleSearchFormSubmit(event) {
 
      // If we haven't already added a forecast for this date, add it
      if (daysCount < 5 && !dailyForecasts.some(f => f.date === foremattedDate)) {
+         const iconCode = item.weather[0].icon;  // Get the icon code for each forecast
          dailyForecasts.push({
            date: foremattedDate,
            temp: item.main.temp,
-           description: item.weather[0].description
+           description: item.weather[0].description,
+           icon: iconCode // Add the icon code to the forecast data
          });
          daysCount++; // Increment the days counter once we add a new forecast
         }
@@ -124,6 +133,7 @@ function handleSearchFormSubmit(event) {
         const descriptionEl = document.createElement('p');
         const humidityEl = document.createElement('p');
         const windSpeedEl = document.createElement('p');
+        const weatherIconEl = document.createElement('img'); // Create an image element for the icon
 
         dateEl.textContent = forecast.date;
         temperatureEl.textContent = `Temperature: ${forecast.temp}°F`;
@@ -131,7 +141,12 @@ function handleSearchFormSubmit(event) {
         humidityEl.textContent = `Humidity: ${forecast.humidity}`;
         windSpeedEl.textContent = `Wind Speed: ${forecast.windSpeed}`;
 
-        // Append each element to the forecast div
+        // Set the image source to the OpenWeatherMap icon URL
+        weatherIconEl.src = `http://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+        weatherIconEl.alt = forecast.description;  // Set alt text as the description
+
+        // Append the icon and weather data to the forecast div
+        forecastEl.appendChild(weatherIconEl);
         forecastEl.appendChild(dateEl);
         forecastEl.appendChild(temperatureEl);
         forecastEl.appendChild(descriptionEl);
