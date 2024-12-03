@@ -122,15 +122,21 @@ function handleSearchFormSubmit(event) {
         const dateEl = document.createElement('h3');
         const temperatureEl = document.createElement('p');
         const descriptionEl = document.createElement('p');
+        const humidityEl = document.createElement('p');
+        const windSpeedEl = document.createElement('p');
 
         dateEl.textContent = forecast.date;
         temperatureEl.textContent = `Temperature: ${forecast.temp}°F`;
         descriptionEl.textContent = `Condition: ${forecast.description}`;
+        humidityEl.textContent = `Humidity: ${forecast.humidity}`;
+        windSpeedEl.textContent = `Wind Speed: ${forecast.windSpeed}`;
 
         // Append each element to the forecast div
         forecastEl.appendChild(dateEl);
         forecastEl.appendChild(temperatureEl);
         forecastEl.appendChild(descriptionEl);
+        forecastEl.appendChild(humidityEl);
+        forecastEl.appendChild(windSpeedEl);
 
         // Append the forecast to the weather-forecast div
         weatherForecastEl.appendChild(forecastEl);
