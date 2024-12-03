@@ -121,6 +121,8 @@ const handleSearchForCity = (city) => {
            date: foremattedDate,
            temp: item.main.temp,
            description: item.weather[0].description,
+           humidity: item.main.humidity,
+           windSpeed: item.wind.speed,
            icon: iconCode // Add the icon code to the forecast data
          });
          daysCount++; // Increment the days counter once we add a new forecast

@@ -7,7 +7,10 @@ This weather forecast project provides users with real-time weather information,
 MIT
 
 ## Screenshots
+![Load Screen](./assets/images/loadscreen.png)  
+![Forecast](./assets/images/forecast.png)
 
 ## Links
-To view this project, navigate to [this GitHub repository]()  
-To view my other projects, head over to [my github]()
+To view this project, visit [the live link]()
+To view this project's code, navigate to [this GitHub repository](https://github.com/tmcdaniel94/legendary-palm-tree)  
+To view my other projects, head over to [my github](https://github.com/tmcdaniel94)
