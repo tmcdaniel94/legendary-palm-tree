@@ -9,21 +9,24 @@ const currentWeatherEl = document.querySelector('#current-weather');
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
-
   const searchInputCity = document.querySelector('#search-input').value;
-//   const formatInputVal = document.querySelector('#format-input').value;
 
   if (!searchInputCity) {
     console.error('You need a search input value!');
     return;
   }
 
+  // Call the helper function to fetch weather for the input city
+  handleSearchForCity(searchInputCity);
+};
+
+const handleSearchForCity = (city) => {
   // Clear previous weather forecast data
   weatherForecastEl.innerHTML = '';
   currentWeatherEl.innerHTML = '';
   
   // First API call to get the coordinates (latitude and longitude)
-  const coordQueryURLWithCity = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInputCity}&appid=${APIKey}`;
+  const coordQueryURLWithCity = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
 
   fetch(coordQueryURLWithCity)
     .then(response => response.json())
@@ -37,10 +40,10 @@ function handleSearchFormSubmit(event) {
     lat = data[0].lat;
     lon = data[0].lon;
 
-    console.log(`Coordinates for ${searchInputCity}: lat = ${lat}, lon = ${lon}`);
+    console.log(`Coordinates for ${city}: lat = ${lat}, lon = ${lon}`);
       
     // Save the city to local storage
-    saveCityToLocalStorage(searchInputCity);
+    saveCityToLocalStorage(city);
     displaySavedCities();
 
      // ---- Current Weather Query ----
@@ -166,13 +169,13 @@ function handleSearchFormSubmit(event) {
 };
 
 const saveCityToLocalStorage = (city) => {
-    let savedCities = JSON.parse(localStorage.getItem('cities')) || [];
-    console.log('Saving city:', city);
-    if (!savedCities.includes(city)) {
-        savedCities.push(city);
-        localStorage.setItem('cities', JSON.stringify(savedCities));
-    }
-    console.log('Saved cities:', savedCities);
+  let savedCities = JSON.parse(localStorage.getItem('cities')) || [];
+  console.log('Saving city:', city);
+  if (!savedCities.includes(city)) {
+    savedCities.push(city);
+    localStorage.setItem('cities', JSON.stringify(savedCities));
+  }
+  console.log('Saved cities:', savedCities);
 };
 
 const readCityFromStorage = (city) => {
@@ -186,9 +189,16 @@ const displaySavedCities = () => {
     cityListEl.innerHTML = '';
 
     savedCities.forEach(city => {
-        const cityEl = document.createElement('button');
-        cityEl.textContent = city;
-        cityListEl.appendChild(cityEl);
+      const cityEl = document.createElement('button');
+      cityEl.textContent = city;
+
+      // Add a click event listener to each city button
+      cityEl.addEventListener('click', () => {
+        // Call the same function that handles the weather search, but with the clicked city name
+        handleSearchForCity(city);
+      })
+
+      cityListEl.appendChild(cityEl);
     });
 };
 
