@@ -11,6 +11,6 @@ MIT
 ![Forecast](./assets/images/forecast.png)
 
 ## Links
-To view this project, visit [the live link]()
+To view this project, visit [the live link](https://tmcdaniel94.github.io/legendary-palm-tree/)  
 To view this project's code, navigate to [this GitHub repository](https://github.com/tmcdaniel94/legendary-palm-tree)  
 To view my other projects, head over to [my github](https://github.com/tmcdaniel94)
