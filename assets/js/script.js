@@ -58,16 +58,24 @@ function handleSearchFormSubmit(event) {
        // Create elements for current weather
        const currentTempEl = document.createElement('p');
        const currentDescriptionEl = document.createElement('p');
+       const currentHumidtyEl = document.createElement('p');
+       const currentWindSpeedEl = document.createElement('p');
 
        const currentTemp = currentWeatherData.main.temp;
        const currentDescription = currentWeatherData.weather[0].description;
+       const currentHumidty = currentWeatherData.main.humidity;
+       const currentWindSpeed = currentWeatherData.wind.speed;
 
        currentTempEl.textContent = `Current Temperature: ${currentTemp}°F`;
-       currentDescriptionEl.textContent = `Condition: ${currentDescription}`;
+       currentDescriptionEl.textContent = `Current Condition: ${currentDescription}`;
+       currentHumidtyEl.textContent = `Humidity: ${currentHumidty}`;
+       currentWindSpeedEl.textContent = `Wind Speed: ${currentWindSpeed}`;
 
        // Append current weather data to the current-weather div
        currentWeatherEl.appendChild(currentTempEl);
        currentWeatherEl.appendChild(currentDescriptionEl);
+       currentWeatherEl.appendChild(currentHumidtyEl);
+       currentWeatherEl.appendChild(currentWindSpeedEl);
      } else {
        console.error('Current weather data not found!');
      }
