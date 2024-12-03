@@ -33,12 +33,15 @@ function handleSearchFormSubmit(event) {
         return;
       }
 
-      // Extract latitude and longitude from the response
-      lat = data[0].lat;
-      lon = data[0].lon;
+    // Extract latitude and longitude from the response
+    lat = data[0].lat;
+    lon = data[0].lon;
 
-      console.log(`Coordinates for ${searchInputCity}: lat = ${lat}, lon = ${lon}`);
-    
+    console.log(`Coordinates for ${searchInputCity}: lat = ${lat}, lon = ${lon}`);
+      
+    // Save the city to local storage
+    saveCityToLocalStorage(searchInputCity);
+    displaySavedCities();
 
      // ---- Current Weather Query ----
      // Fetch current weather data
@@ -131,9 +134,6 @@ function handleSearchFormSubmit(event) {
   .catch(error => {
     console.error('Error fetching weather data:', error);
   });
-
-  // Save the city to local storage
-  saveCityToLocalStorage(searchInputCity);
 };
 
 const saveCityToLocalStorage = (city) => {
